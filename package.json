@@ -33,6 +33,9 @@
     "grunt-eslint": "^16.0.0",
     "grunt-jscs": "^1.8.0"
   },
+  "dependencies": {
+    "autolayout": "^0.4.0"
+  },
   "files": [
     "src",
     "LICENSE"
