@@ -1,0 +1,45 @@
+{
+  "name": "famous-autolayout",
+  "version": "0.1.0",
+  "homepage": "https://github.com/IjzerenHein/famous-autolayout",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/IjzerenHein/famous-autolayout.git"
+  },
+  "main": "src",
+  "author": {
+    "name": "Hein Rutjes <hrutjes@gmail.com>"
+  },
+  "description": "Apple's Auto Layout and Visual Format Language for famo.us",
+  "keywords": [
+    "famo.us",
+    "famous",
+    "autolayout",
+    "cassowary",
+    "visualformat",
+    "vfl",
+    "evfl"
+  ],
+  "license": "MIT",
+  "readmeFilename": "README.md",
+  "bugs": {
+    "url": "https://github.com/IjzerenHein/famous-autolayout/issues"
+  },
+  "engines": {
+    "node": ">= 0.10.0"
+  },
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-eslint": "^16.0.0",
+    "grunt-jscs": "^1.8.0"
+  },
+  "files": [
+    "src",
+    "LICENSE"
+  ],
+  "browserify": {
+    "transform": [
+      "deamdify"
+    ]
+  }
+}
