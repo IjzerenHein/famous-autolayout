@@ -4,7 +4,7 @@
 famous-autolayout
 ==========
 
-famous-autolayout implements Apple's Auto-layout Visual Format Language (VFL) for famo.us. Auto layout is a system which lets you perform lay out using mathematical relationships (constraints). Using (E)VFL you can create complex responsive layouts in no time:
+famous-autolayout implements Apple's Auto-layout Visual Format Language (VFL) for famo.us. Auto layout is a system which lets you perform lay out using mathematical relationships (cassowary constraints). It is based on [autolayout.js](https://github.com/IjzerenHein/autolayout.js) and allows you to create complex responsive layouts in no time:
 
 ![screenshot](screenshot.gif)
 
