@@ -18,8 +18,8 @@
  */
 define(function(require, exports, module) {
 
-	// import dependencies
-	var AutoLayout = require('autolayout');
+    // import dependencies
+    var AutoLayout = require('autolayout');
 
     function _setSpacing(view, spacing) {
         view.setSpacing(spacing);
@@ -72,15 +72,17 @@ define(function(require, exports, module) {
         return size;
     }
 
-	function vflToLayout(visualFormat, viewOptions) {
-		var view = new AutoLayout.View(viewOptions);
-		try {
-			var constraints = AutoLayout.VisualFormat.parse(visualFormat, {extended: true, strict: false});
-			var metaInfo = AutoLayout.VisualFormat.parseMetaInfo ? AutoLayout.VisualFormat.parseMetaInfo(visualFormat) : {};
-			view.addConstraints(constraints);
-			return function(context, options) {
-				var key;
-				var subView;
+    function vflToLayout(visualFormat, viewOptions) {
+        var view = new AutoLayout.View(viewOptions);
+        try {
+            var constraints = AutoLayout.VisualFormat.parse(visualFormat, {extended: true, strict: false});
+            var metaInfo = AutoLayout.VisualFormat.parseMetaInfo ? AutoLayout.VisualFormat.parseMetaInfo(visualFormat) : {};
+            view.addConstraints(constraints);
+            var dummyOptions = {};
+            return function(context, options) {
+                options = options || dummyOptions;
+                var key;
+                var subView;
                 var x;
                 var y;
                 if (options.spacing || metaInfo.spacing) {
@@ -92,31 +94,31 @@ define(function(require, exports, module) {
                 if (options.heights || metaInfo.heights) {
                     _setIntrinsicHeights(context, view, options.heights || metaInfo.heights);
                 }
-				if (options.viewport || metaInfo.viewport) {
-                    var size = _setViewPortSize(context, view, options.viewport || metaInfo.viewport);
-                    x = (context.size[0] - size[0]) / 2;
-                    y = (context.size[1] - size[1]) / 2;
+                        if (options.viewport || metaInfo.viewport) {
+                  var size = _setViewPortSize(context, view, options.viewport || metaInfo.viewport);
+                  x = (context.size[0] - size[0]) / 2;
+                  y = (context.size[1] - size[1]) / 2;
                 }
                 else {
-                    view.setSize(context.size[0], context.size[1]);
-                    x = 0;
-                    y = 0;
+                  view.setSize(context.size[0], context.size[1]);
+                  x = 0;
+                  y = 0;
                 }
-				for (key in view.subViews) {
-					subView = view.subViews[key];
-					if ((key.indexOf('_') !== 0) && (subView.type !== 'stack')) {
-						context.set(subView.name, {
-							size: [subView.width, subView.height],
-							translate: [x + subView.left, y + subView.top, subView.zIndex * 5]
-						});
-					}
-				}
-			};
-		}
-		catch (err) {
-			console.log(err); //eslint-disable-line no-console
-		}
-	}
+                for (key in view.subViews) {
+                    subView = view.subViews[key];
+                    if ((key.indexOf('_') !== 0) && (subView.type !== 'stack')) {
+                        context.set(subView.name, {
+                            size: [subView.width, subView.height],
+                            translate: [x + subView.left, y + subView.top, subView.zIndex * 5]
+                        });
+                    }
+                }
+            };
+        }
+        catch (err) {
+            console.log(err); //eslint-disable-line no-console
+        }
+    }
 
     module.exports = vflToLayout;
 });
