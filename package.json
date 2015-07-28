@@ -1,6 +1,6 @@
 {
   "name": "famous-autolayout",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "homepage": "https://github.com/IjzerenHein/famous-autolayout",
   "repository": {
     "type": "git",
@@ -34,7 +34,7 @@
     "grunt-jscs": "^1.8.0"
   },
   "dependencies": {
-    "autolayout": "^0.4.1"
+    "autolayout": "^0.4.2"
   },
   "files": [
     "src",
