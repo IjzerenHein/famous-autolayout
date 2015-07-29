@@ -29,7 +29,7 @@ Before you get started with famous-autolayout and VFL, it is important to know a
 
 *The Extended Visual Format Language is a superset of VFL that has been created to solve limitations in standard VFL as well as give you greater control of layouts with less code. Amongst other things, it adds 'z-ordering' which is essential when using VFL with famo.us. Famous-autolayout uses EVFL.*
 
-- [Supported meta info](https://github.com/IjzerenHein/visualformat-editor#extended-visual-format-meta-info)
+- [Visual format meta info](https://github.com/IjzerenHein/visualformat-editor#visual-format-meta-info)
 
 *In the comments of your VFL you can specify meta information which is used by the renderer of the layout. You can use this to for instance set the default spacing or aspect-ratio of the view.*
 
@@ -47,8 +47,58 @@ To use AutoLayout in your famo.us project, install famous-autolayout using npm o
 
 ## Famo.us Mixed Mode
 
-*Autolayout for famo.us Mixed Mode is under development, check back later.*
+To create a layout from a visual format, use:
 
+```javascript
+var AutoLayoutController = require('famous-autolayout/src/AutoLayoutController');
+
+// Using the very useful ES6 template-strings feature (the backtick),
+// VFL can be easily copy/pasted between code and the editor.
+// If you can't use the backtick symbol, use an array with strings instead:
+// var vfl = ['H:|-[row:[red(green,blue)]-[green]-[blue]]-|','V:|[row]|'];
+var vfl = `
+//viewport aspect-ratio:3/1 max-height:300
+H:|-[row:[red(green,blue)]-[green]-[blue]]-|
+V:|[row]|
+`;
+
+// Create autolayout controller with some colored divs
+var alc = new AutoLayoutController({
+    visualFormat: vfl
+});
+new DOMElement(alc.addChild(undefined, 'red')).setProperty('background', 'red');
+new DOMElement(alc.addChild(undefined, 'green')).setProperty('background', 'green');
+new DOMElement(alc.addChild(undefined, 'blue')).setProperty('background', 'blue');
+scene.addChild(alc); // add controller to the scene
+```
+
+AutoLayoutController extends Node and implements the following functions:
+
+```javascript
+autoLayoutController.setVisualFormat(visualFormat, parseOptions);
+autoLayoutController.setLayoutOptions(layoutOptions);
+autoLayoutController.reflowLayout();
+autoLayoutController.addChild(node, id);
+autoLayoutController.removeChild(node, id);
+```
+
+Any settings that can be configured in the VFL comments, can also
+be configured through the layout-options:
+
+```javascript
+var alc = new AutoLayoutController({
+    visualFormat: [
+        'V:|[col:[header(100)][content][footer]]|',
+        'H:|[col]|'
+    ],
+    layoutOptions: {
+        spacing: 10,
+        heights: {
+            footer: 100
+        }
+    }
+});
+```
 
 ## Famo.us v0.3.x
 
@@ -146,8 +196,7 @@ This becomes apparent when you create a layout that has a background and foregro
 
 ```vfl
 //spacing:50
-H:|[background]|
-V:|[background]|
+HV:|[background]|
 H:|[row:-[col1(col2,col3)]-[col2]-[col3]-]|
 V:|[row]|
 Z:|[background][row] // put row in front of the background
@@ -161,16 +210,29 @@ The last line of VFL instructs the layout that `[row]` is in front of `[backgrou
 
 Sometimes you want the render-node to calculate the size (e.g. a text that has a variable width based
 its content), rather than defining it in VFL.
-To do this, set the width or height to `intrinsic` in the VFL comments. This instructs the `vflToLayout`
-function to grab the size from the node and pass it along to the autolayout solver.
+To do this, set the width or height to `intrinsic` in the VFL comments. This instructs famous-autolayout to grab the size from the node and pass it along to the autolayout solver.
 
-```vfl
-//widths text1:intrinsic text2:intrinsic
-H:|-[text1]-[longText2]
-V:|[text1]|
-V:|[longText2]|
+**Mixed mode example:**
+
+```javascript
+var alc = new AutoLayoutController({
+    visualFormat: [
+        '//widths text1:intrinsic text2:intrinsic',
+        '|~[row:[text1]-[text2]]~|',
+        'V:|~[row(30)]~|'
+    ]
+});
+
+var text1 = alc.addChild(undefined, 'text1');
+var text2 = alc.addChild(undefined, 'text2');
+text1.setSizeMode('render');
+text2.setSizeMode('render');
+var elmProps = {background: 'lightgray', 'white-space': 'nowrap', 'border-radius': '3px'};
+new DOMElement(text1, {properties: elmProps, content: 'text 1'});
+new DOMElement(text2, {properties: elmProps, content: 'a much longer text'});
 ```
 ![truesize](img/truesize.png)
+
 
 ## Contribute
 
