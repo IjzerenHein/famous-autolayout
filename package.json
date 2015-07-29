@@ -34,15 +34,10 @@
     "grunt-jscs": "^1.8.0"
   },
   "dependencies": {
-    "autolayout": "^0.4.2"
+    "autolayout": "^0.4.3"
   },
   "files": [
     "src",
     "LICENSE"
-  ],
-  "browserify": {
-    "transform": [
-      "deamdify"
-    ]
-  }
+  ]
 }
