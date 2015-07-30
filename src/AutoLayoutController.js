@@ -100,7 +100,6 @@ function _layout() {
 	if (!this._autoLayoutView) {
 		return;
 	}
-    console.log('layout');
     var x;
     var y;
     var size = this.getSize();
