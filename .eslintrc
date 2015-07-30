@@ -1,12 +1,13 @@
 {
     "env": {
         "browser": true,
-        "amd": true
+        "node": true
     },
     "globals": {
         "DocumentFragment": true
     },
     "rules": {
+        "no-console": 1,
         "valid-jsdoc": 0,
         "curly": [1, "all"],
         "brace-style": [1, "stroustrup"],

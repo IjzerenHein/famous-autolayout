@@ -8,9 +8,6 @@
  * @copyright Gloey Apps, 2015
  */
 
-/*global console*/
-/*eslint no-console: 0*/
-
 // import dependencies
 var AutoLayout = require('autolayout');
 
