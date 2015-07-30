@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/IjzerenHein/famous-autolayout.svg?branch=master)](https://travis-ci.org/IjzerenHein/famous-autolayout)
 [![view on npm](http://img.shields.io/npm/v/famous-autolayout.svg)](https://www.npmjs.org/package/famous-autolayout)
 [![License](http://img.shields.io/:license-mit-blue.svg)](http://doge.mit-license.org)
 
