@@ -9,7 +9,7 @@
  */
 
 // import dependencies
-var AutoLayout = require('autolayout');
+var AutoLayout = require('autolayout/dist/autolayout.kiwi');
 
 function _setSpacing(view, spacing) {
     view.setSpacing(spacing);
