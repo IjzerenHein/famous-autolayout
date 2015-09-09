@@ -75,6 +75,7 @@ function vflToLayout(visualFormat, viewOptions) {
             var subView;
             var x;
             var y;
+            var zIndex = options.zIndex || 0;
             if (options.spacing || metaInfo.spacing) {
                 _setSpacing(view, options.spacing || metaInfo.spacing);
             }
@@ -84,22 +85,22 @@ function vflToLayout(visualFormat, viewOptions) {
             if (options.heights || metaInfo.heights) {
                 _setIntrinsicHeights(context, view, options.heights || metaInfo.heights);
             }
-                    if (options.viewport || metaInfo.viewport) {
-              var size = _setViewPortSize(context, view, options.viewport || metaInfo.viewport);
-              x = (context.size[0] - size[0]) / 2;
-              y = (context.size[1] - size[1]) / 2;
+            if (options.viewport || metaInfo.viewport) {
+                var size = _setViewPortSize(context, view, options.viewport || metaInfo.viewport);
+                x = (context.size[0] - size[0]) / 2;
+                y = (context.size[1] - size[1]) / 2;
             }
             else {
-              view.setSize(context.size[0], context.size[1]);
-              x = 0;
-              y = 0;
+                view.setSize(context.size[0], context.size[1]);
+                x = 0;
+                y = 0;
             }
             for (key in view.subViews) {
                 subView = view.subViews[key];
                 if ((key.indexOf('_') !== 0) && (subView.type !== 'stack')) {
                     context.set(subView.name, {
                         size: [subView.width, subView.height],
-                        translate: [x + subView.left, y + subView.top, subView.zIndex * 5]
+                        translate: [x + subView.left, y + subView.top, zIndex + (subView.zIndex * 5)]
                     });
                 }
             }
