@@ -1,3 +1,9 @@
+# THIS REPOSITORY IS NO LONGER MAINTAINED
+
+Looking for an alternative? Please have a look at [lume/autolayout](https://github.com/lume/autolayout).
+
+If you are interested in maintaining this repository (and taking ownership of it), please reach out to me [here](mailto:hrutjes@gmail.com).
+
 [![Build Status](https://travis-ci.org/IjzerenHein/famous-autolayout.svg?branch=master)](https://travis-ci.org/IjzerenHein/famous-autolayout)
 [![view on npm](http://img.shields.io/npm/v/famous-autolayout.svg)](https://www.npmjs.org/package/famous-autolayout)
 [![License](http://img.shields.io/:license-mit-blue.svg)](http://doge.mit-license.org)
@@ -11,12 +17,18 @@ famous-autolayout implements Apple's Auto-layout Visual Format Language (VFL) fo
 
 ## Index
 
-- [Important resources](#important-resources)
-- [Getting started](#getting-started)
-- [Spacing](#spacing)
-- [Viewport settings](#viewport-settings)
-- [Z-ordering](#z-ordering)
-- [Using the size of the render-node](#using-the-size-of-the-render-node)
+- [THIS REPOSITORY IS NO LONGER MAINTAINED](#this-repository-is-no-longer-maintained)
+- [famous-autolayout](#famous-autolayout)
+  - [Index](#index)
+  - [Important resources](#important-resources)
+  - [Getting started](#getting-started)
+  - [Famo.us Mixed Mode](#famous-mixed-mode)
+  - [Famo.us v0.3.x](#famous-v03x)
+  - [Viewport settings](#viewport-settings)
+  - [Spacing](#spacing)
+  - [Z-ordering](#z-ordering)
+  - [Using the size of the render-node (true-size)](#using-the-size-of-the-render-node-true-size)
+  - [Contribute](#contribute)
 
 ## Important resources
 
